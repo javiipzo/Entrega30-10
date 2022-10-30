@@ -69,3 +69,21 @@ ax.set_ylabel('y')
 fig.colorbar(surf, shrink=0.5, aspect=5) # añadir barra de color indicando el PDF
 ax.view_init(60, 35)
 plt.show()
+
+from sklearn import mixture
+
+#Determinación de los clústeres (2 a encontrar)  
+gmm = mixture.GaussianMixture(n_components=2)
+
+#Aprendizaje  
+gmm.fit(frutas)
+
+#Clasificación  
+clusteres = gmm.predict(frutas)
+
+#Visualización de los clústeres  
+plt.scatter(frutas.DIAMETRO, frutas.PESO, c=clusteres, s=40,
+cmap='viridis')
+plt.xlabel("DIÁMETRO")
+plt.ylabel("PESO")
+plt.show() 
